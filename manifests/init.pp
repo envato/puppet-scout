@@ -1,5 +1,5 @@
 # Manages scoutapp.com agent
-class scout {
+class scout($scout_key=false) {
   package {
     'scout':
       ensure   => 'installed',
