@@ -11,6 +11,8 @@ Example
 -------
 
 node foo.example.com {
-  $scout_key = 'fea6b370-d2c8-7d2c-d52b-d25790ab2fb0'
-  include scout
+  class { 'scout':
+    scout_key => 'fea6b370-d2c8-7d2c-d52b-d25790ab2fb0',
+    user      => "unprivileged_joe"
+  }
 }
