@@ -16,3 +16,4 @@ node foo.example.com {
     user      => "unprivileged_joe"
   }
 }
+
