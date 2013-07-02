@@ -21,11 +21,11 @@ class scout(
   # Install the public cert if defined so we can install custom plugins
   if $public_cert {
     if $home_dir {
-      $scout_cert_path = "$home_dir/.scout"
+      $scout_cert_path = "${home_dir}/.scout"
     } else {
       $scout_cert_path = "/home/${user}/.scout"
     }
-    file { "$scout_cert_path/scout_rsa.pub":
+    file { "${scout_cert_path}/scout_rsa.pub":
       content => $public_cert,
       owner => $user,
     }
