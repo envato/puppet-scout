@@ -46,6 +46,6 @@ class scout(
     environment => $cron_environment,
   }
 
-  ensure_resource('user', $user, {'ensure' => 'present', 'managehome' => 'true', 'home' => $home_dir})
+  ensure_resource('user', $user, {'ensure' => 'present', 'managehome' => 'true', 'home' => "${home_dir}"})
 
 }
