@@ -46,12 +46,6 @@ class scout(
     environment => $cron_environment,
   }
 
-  if ! defined ( User[$user] ) {
-    user { $user:
-      ensure      => present,
-      managehome  => true,
-      homedir     => $home_dir,
-    }
-  }
+  ensure_resource('user', $user, {'ensure' => 'present', 'managehome' => 'true', 'homedir' => $home_dir})
 
 }
