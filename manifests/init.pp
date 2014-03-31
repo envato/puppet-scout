@@ -12,7 +12,7 @@ class scout(
 
   package { 'scout':
     ensure   => 'installed',
-    provider => 'gem';
+    provider => 'gem',
     require  => [
       Package['ruby'],
       Package['rubygems'],
