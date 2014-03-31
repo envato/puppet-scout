@@ -3,7 +3,7 @@ class scout(
   $scout_key        = undef,
   $user             = 'scout',
   $cron_environment = undef,
-  $home_dir         = '/home/scout',
+  $home_dir         = "/home/${user}",
   $public_cert      = undef,
 ) {
 
