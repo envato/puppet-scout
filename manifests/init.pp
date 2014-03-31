@@ -6,9 +6,17 @@ class scout(
   $home_dir = undef,
   $public_cert = undef,
 ) {
+  package { ['ruby','rubygems']:
+    ensure  => present,
+  }
+
   package { 'scout':
     ensure   => 'installed',
     provider => 'gem';
+    require  => [
+      Package['ruby'],
+      Package['rubygems'],
+    ],
   }
 
   # set up the cronjob that runs the agent every minute
