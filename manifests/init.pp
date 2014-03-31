@@ -7,10 +7,6 @@ class scout(
   $public_cert      = undef,
 ) { 
 
-  if ! defined ( $home_dir ) {
-    $home_dir       = "/home/${user}"
-  }
-
   if $public_cert {
     $scout_cert_path = "${home_dir}/.scout"
 
