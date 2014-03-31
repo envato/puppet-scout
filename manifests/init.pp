@@ -46,16 +46,12 @@ class scout(
     environment => $cron_environment,
   }
 
-  exec { 'check_user_presence':
-    command => '/bin/true',
-    unless  => "id -u ${user} &>/dev/null",
-  }
-
-  user { $user:
-    ensure      => present,
-    managehome  => true,
-    homedir     => $home_dir,
-    require     => Exec['check_user_presence'],
+  if ! defined ( User[$user] ) {
+    user { $user:
+      ensure      => present,
+      managehome  => true,
+      homedir     => $home_dir,
+    }
   }
 
 }
