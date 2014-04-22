@@ -26,8 +26,15 @@ class scout(
     }
   }
 
-  package { ['ruby','rubygems']:
-    ensure  => present,
+  if (! defined(Package['ruby'])) {
+    package { 'ruby':
+      ensure  => present,
+    }
+  }
+  if (! defined(Package['rubygems'])) {
+    package { 'rubygems':
+      ensure  => present,
+    }
   }
 
   package { 'scout':
