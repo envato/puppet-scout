@@ -5,7 +5,7 @@ class scout(
   $cron_environment = undef,
   $home_dir         = '',
   $public_cert      = undef,
-) { 
+) {
 
   if $home_dir == '' and $user != '' {
     $valid_home_dir="/home/${user}"
