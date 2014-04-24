@@ -3,9 +3,13 @@ class scout(
   $scout_key        = undef,
   $user             = 'scout',
   $cron_environment = undef,
-  $home_dir         = "/home/${user}",
+  $home_dir         = undef,
   $public_cert      = undef,
-) { 
+) {
+
+  unless $home_dir {
+    $home_dir = "/home/${user}"
+  }
 
   if $public_cert {
     $scout_cert_path = "${home_dir}/.scout"
