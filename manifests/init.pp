@@ -3,12 +3,18 @@ class scout(
   $scout_key        = undef,
   $user             = 'scout',
   $cron_environment = undef,
-  $home_dir         = "/home/${user}",
+  $home_dir         = '',
   $public_cert      = undef,
 ) { 
 
+  if $home_dir == '' and $user != '' {
+    $valid_home_dir="/home/${user}"
+  } else {
+    $valid_home_dir=$home_dir
+  }
+    
   if $public_cert {
-    $scout_cert_path = "${home_dir}/.scout"
+    $scout_cert_path = "${valid_home_dir}/.scout"
 
     file { $scout_cert_path:
       ensure  => directory,
@@ -53,6 +59,6 @@ class scout(
     environment => $cron_environment,
   }
 
-  ensure_resource('user', $user, {'ensure' => 'present', 'managehome' => 'true', 'home' => "${home_dir}"})
+  ensure_resource('user', $user, {'ensure' => 'present', 'managehome' => 'true', 'home' => "${valid_home_dir}"})
 
 }
