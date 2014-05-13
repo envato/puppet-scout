@@ -45,7 +45,7 @@ class scout(
   }
 
   package { 'scout':
-    ensure   => 'installed',
+    ensure   => 'latest',
     provider => 'gem',
     require  => [
       Package['ruby'],
