@@ -5,6 +5,7 @@ class scout(
   $cron_environment = undef,
   $home_dir = undef,
   $public_cert = undef,
+  $scout_environment_name = 'production'
 ) {
   package { 'scout':
     ensure   => 'installed',
@@ -14,7 +15,7 @@ class scout(
   # set up the cronjob that runs the agent every minute
   cron { 'scout':
     user        => $user,
-    command     => "/usr/bin/env scout ${scout_key}",
+    command     => "/usr/bin/env scout ${scout_key} -e ${scout_environment_name}",
     environment => $cron_environment,
   }
 

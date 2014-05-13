@@ -14,11 +14,14 @@ Example
 
 node foo.example.com {
   class { 'scout':
-    scout_key   => 'fea6b370-d2c8-7d2c-d52b-d25790ab2fb0',
-    user        => 'unprivileged_joe'
+    scout_key              => 'fea6b370-d2c8-7d2c-d52b-d25790ab2fb0',
+    user                   => 'unprivileged_joe'
     # Optional
-    home_dir    => '/home/user', 
-    public_cert => 'contents_of_public_cert',
+    home_dir               => '/home/user',
+    public_cert            => 'contents_of_public_cert',
+    scout_environment_name => 'production',
   }
 }
+
+It is important to note: If you do not have a corresponding environment set up correctly in the scout dashboard, the `scout_environment_name` will not have any effect
 
