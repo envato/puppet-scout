@@ -67,11 +67,9 @@ class scout(
     mode   => '0755',
   }
 
-  ensure_resource('user', $user,
-    {
-      'ensure'     => 'present',
-      'managehome' => true,
-      'home'       => $valid_home_dir
-    }
-  )
+  user { $user:
+    ensure     => 'present',
+    managehome => true,
+    home       => $valid_home_dir,
+  }
 }
