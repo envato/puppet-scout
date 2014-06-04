@@ -13,7 +13,7 @@ class scout(
   } else {
     $valid_home_dir=$home_dir
   }
-    
+
   if $public_cert {
     $scout_cert_path = "${valid_home_dir}/.scout"
 
@@ -25,7 +25,7 @@ class scout(
 
     file { "${scout_cert_path}/scout_rsa.pub":
       content => $public_cert,
-      owner => $user,
+      owner   => $user,
       require => [
         File[$scout_cert_path],
         User[$user],
@@ -67,6 +67,11 @@ class scout(
     mode   => '0755',
   }
 
-  ensure_resource('user', $user, {'ensure' => 'present', 'managehome' => 'true', 'home' => "${valid_home_dir}"})
-
+  ensure_resource('user', $user,
+    {
+      'ensure'     => 'present',
+      'managehome' => true,
+      'home'       => $valid_home_dir
+    }
+  )
 }
