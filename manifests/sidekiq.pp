@@ -1,7 +1,10 @@
 # Installs the sidekiq required by some scout plugins
-class scout::sidekiq {
+class scout::sidekiq (
+  $version = '2.8.0'
+)
+{
   package { 'sidekiq':
-    ensure    => present,
+    ensure    => $version,
     provider  => 'gem',
     require   => [
       Package['ruby'],
