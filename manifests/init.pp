@@ -67,7 +67,7 @@ class scout(
     mode   => '0755',
   }
 
-  if (!defined(User[$user]))
+  if (! defined(User[$user])) {
     user { $user:
       ensure     => 'present',
       managehome => true,
