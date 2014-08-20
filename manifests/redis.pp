@@ -5,8 +5,7 @@ class scout::redis {
       ensure    => present,
       provider  => 'gem',
       require   => [
-        Package['ruby'],
-        Package['rubygems'],
+        Package['rubygems']
       ],
     }
   }

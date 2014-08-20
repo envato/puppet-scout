@@ -8,7 +8,6 @@ class scout::sidekiq (
       ensure    => $version,
       provider  => 'gem',
       require   => [
-        Package['ruby'],
         Package['rubygems'],
       ],
     }
