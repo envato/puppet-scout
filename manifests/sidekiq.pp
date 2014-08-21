@@ -3,12 +3,13 @@ class scout::sidekiq (
   $version = '2.8.0'
 )
 {
-  package { 'sidekiq':
-    ensure    => $version,
-    provider  => 'gem',
-    require   => [
-      Package['ruby'],
-      Package['rubygems'],
-    ],
+  if (!defined(Package['sidekiq'])) {
+    package { 'sidekiq':
+      ensure    => $version,
+      provider  => 'gem',
+      require   => [
+        Package['rubygems'],
+      ],
+    }
   }
 }
