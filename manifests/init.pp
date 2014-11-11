@@ -5,7 +5,8 @@ class scout(
   $cron_environment = undef,
   $home_dir         = '',
   $public_cert      = undef,
-  $scout_environment_name = 'production'
+  $scout_environment_name = 'production',
+  $manage_ruby      = false,
 ) {
 
   if $home_dir == '' and $user != '' {
@@ -33,12 +34,16 @@ class scout(
     }
   }
 
-  if (! defined(Package['ruby'])) {
+  if $manage_ruby {
+    Package['scout'] {
+      require  => [
+        Package['ruby'],
+        Package['rubygems'],
+      ],
+    }
     package { 'ruby':
       ensure  => present,
     }
-  }
-  if (! defined(Package['rubygems'])) {
     package { 'rubygems':
       ensure  => present,
     }
@@ -47,10 +52,6 @@ class scout(
   package { 'scout':
     ensure   => 'latest',
     provider => 'gem',
-    require  => [
-      Package['ruby'],
-      Package['rubygems'],
-    ],
   }
 
   cron { 'scout':
