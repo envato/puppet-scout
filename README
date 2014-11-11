@@ -20,6 +20,7 @@ node foo.example.com {
     home_dir               => '/home/user',
     public_cert            => 'contents_of_public_cert',
     scout_environment_name => 'production',
+    manage_ruby            => true,
   }
 }
 
