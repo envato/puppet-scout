@@ -1,1 +1,8 @@
-vendor/
+/.bundle
+/.rspec_system
+/.vagrant
+/Gemfile.lock
+/bin/
+/pkg
+/spec/fixtures
+/vendor
