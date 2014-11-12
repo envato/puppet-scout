@@ -9,7 +9,7 @@ class scout::redis {
     }
   }
   package { 'redis':
-    ensure    => present,
-    provider  => 'gem',
+    ensure   => present,
+    provider => 'gem',
   }
 }
