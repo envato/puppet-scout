@@ -11,7 +11,7 @@ class scout::sidekiq (
     }
   }
   package { 'sidekiq':
-     ensure    => $version,
-     provider  => 'gem',
+     ensure   => $version,
+     provider => 'gem',
   }
 }

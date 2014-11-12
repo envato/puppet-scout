@@ -9,7 +9,7 @@ class scout::mysql {
     }
   }
   package { 'ruby-mysql':
-    ensure    => present,
-    provider  => 'gem',
+    ensure   => present,
+    provider => 'gem',
   }
 }
