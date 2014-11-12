@@ -41,12 +41,7 @@ class scout(
         Package['rubygems'],
       ],
     }
-    package { 'ruby':
-      ensure  => present,
-    }
-    package { 'rubygems':
-      ensure  => present,
-    }
+    include scout::ruby
   }
 
   package { 'scout':
