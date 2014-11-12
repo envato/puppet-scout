@@ -1,6 +1,7 @@
 source "https://rubygems.org"
 
 group :test do
+  gem "metadata-json-lint"
   gem "rake"
   gem "puppet", ENV['PUPPET_VERSION'] || '~> 3.7.0'
   gem "rspec-puppet", :git => 'https://github.com/rodjek/rspec-puppet.git'
@@ -15,5 +16,4 @@ group :development do
   gem "vagrant-wrapper"
   gem "puppet-blacksmith"
   gem "guard-rake"
-  gem "metadata-json-lint"
 end
