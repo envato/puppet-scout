@@ -44,3 +44,5 @@ task :test => [
   :spec,
   :metadata,
 ]
+
+task :default => :test
