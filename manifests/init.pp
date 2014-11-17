@@ -42,7 +42,7 @@ class scout(
       ],
     }
     include scout::ruby
-  }x
+  }
 
   package { 'scout':
     ensure   => 'latest',
