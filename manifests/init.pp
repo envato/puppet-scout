@@ -34,7 +34,7 @@ class scout(
     }
   }
 
-  if $manage_ruby {
+  if $manage_ruby == true {
     Package['scout'] {
       require  => [
         Package['ruby'],
@@ -42,7 +42,7 @@ class scout(
       ],
     }
     include scout::ruby
-  }
+  }x
 
   package { 'scout':
     ensure   => 'latest',
