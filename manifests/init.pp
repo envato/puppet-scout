@@ -61,6 +61,18 @@ class scout(
 
   class { 'scout::install': ensure => 'latest' }
 
+  if (is_array($scout_roles)) {
+    $scout_roles_config = inline_template('<% @scout_roles.size.to_i %>') ? {
+      0       => fail('Parameter scout_roles can not be an empty array.'),
+      1       => join($scout_roles, ''),
+      default => join($scout_roles, ','),
+    }
+    $scout_cmd_args = "-e ${scout_environment_name} -r ${scout_roles_config}"
+  }
+  else {
+    $scout_cmd_args = "-e ${scout_environment_name}"
+  }
+
   file { '/var/lib/puppet':
     ensure => directory,
     owner  => 'puppet',
