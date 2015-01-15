@@ -10,7 +10,7 @@ class scout(
   $managehome             = true,
   $public_cert            = undef,
   $scout_environment_name = 'production',
-  $scout_roles            = [],
+  $scout_roles            = undef,
   $manage_ruby            = false,
 ) {
 
