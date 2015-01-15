@@ -63,9 +63,11 @@ class scout(
     mode   => '0755',
   }
 
-  user { $user:
-    ensure     => 'present',
-    managehome => true,
-    home       => $valid_home_dir,
+  if (! defined(User[$user])) {
+    user { $user:
+      ensure     => 'present',
+      managehome => true,
+      home       => $valid_home_dir,
+    }
   }
 }
