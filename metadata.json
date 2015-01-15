@@ -3,14 +3,14 @@
   "version": "1.0.7",
   "author": "Envato",
   "summary": "Installs and configures scout",
-  "license": "MIT License (MIT)",
+  "license": "MIT",
   "source": "https://github.com/envato/puppet-scout",
   "project_page": "https://github.com/envato/puppet-scout",
   "issues_url": "https://github.com/envato/puppet-scout/issues",
   "dependencies": [
     {
       "name": "puppetlabs-stdlib",
-      "version_requirement": ">= 1.0.0"
+      "version_requirement": "1.0.0"
     }
   ]
 }
