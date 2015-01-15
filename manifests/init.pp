@@ -61,6 +61,13 @@ class scout(
 
   class { 'scout::install': ensure => 'latest' }
 
+  file { '/var/lib/puppet':
+    ensure => directory,
+    owner  => 'puppet',
+    group  => 'puppet',
+    mode   => '0755',
+  }
+
   class { 'scout::cron':
     ensure                 => $ensure,
     user                   => $user,
