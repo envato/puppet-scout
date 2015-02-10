@@ -26,6 +26,14 @@ node foo.example.com {
     scout_environment_name => 'production',
     manage_ruby            => true,
   }
+
+  # Using Scout to monitor Puppet? Ensure Scout can read the state:
+  class { 'scout::manage_puppet_state_dir':
+    group  => 'puppet',
+    mode   => '0755',
+    owner  => 'puppet',
+    path   => '/var/lib/puppet',
+  }
 }
 ```
 
