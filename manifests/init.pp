@@ -56,13 +56,6 @@ class scout(
     environment => $cron_environment,
   }
 
-  file { '/var/lib/puppet':
-    ensure => directory,
-    owner  => 'puppet',
-    group  => 'puppet',
-    mode   => '0755',
-  }
-
   user { $user:
     ensure     => 'present',
     managehome => true,
