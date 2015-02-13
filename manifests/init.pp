@@ -1,6 +1,7 @@
 # Manages scoutapp.com agent
 class scout(
   $scout_key        = undef,
+  $enable           = true,
   $user             = 'scout',
   $cron_environment = undef,
   $home_dir         = '',
@@ -49,7 +50,13 @@ class scout(
     provider => 'gem',
   }
 
+  $crontab_enable = $enable ? {
+    false   => 'absent',
+    default => 'present',
+  }
+
   cron { 'scout':
+    ensure      => $crontab_enable,
     require     => User[$user],
     user        => $user,
     command     => "/usr/bin/env scout ${scout_key} -e ${scout_environment_name}",
