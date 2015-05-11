@@ -5,7 +5,7 @@ class scout::user (
   $homedir   = '/home/scout',
   $group      = 'scout',
   $managehome = true,
-  $groups     = undef
+  $groups     = []
   ) {
 
   validate_absolute_path($homedir)
@@ -21,7 +21,7 @@ class scout::user (
   }
 
   user { $user:
-    group      => $group,
+    gid        => $group,
     home       => $homedir,
     managehome => $managehome,
     require    => Group[$group],

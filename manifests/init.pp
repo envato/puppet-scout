@@ -58,13 +58,13 @@ class scout(
     include scout::ruby
   }
 
-  class { 'scout::package': ensure => 'latest' }
+  class { 'scout::install': ensure => 'latest' }
 
   class { 'scout::cron':
     ensure                 => $ensure,
     user                   => $user,
     scout_key              => $scout_key,
     scout_environment_name => $scout_environment_name,
-    environment            => $cron_environment
+    cron_environment       => $cron_environment
   }
 }
