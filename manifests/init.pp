@@ -6,7 +6,7 @@ class scout(
   $group                  = 'scout',
   $groups                 = undef,
   $cron_environment       = undef,
-  $homedir                = '/home/scout',
+  $home_dir               = '/home/scout',
   $managehome             = true,
   $public_cert            = undef,
   $scout_environment_name = 'production',
@@ -22,14 +22,14 @@ class scout(
   class { 'scout::user':
     ensure     => $ensure,
     user       => $user,
-    homedir    => $homedir,
+    homedir    => $home_dir,
     group      => $group,
     groups     => $groups,
     managehome => $managehome,
   }
 
   if $public_cert {
-    $scout_cert_path = "${homedir}/.scout"
+    $scout_cert_path = "${home_dir}/.scout"
 
     file { $scout_cert_path:
       ensure  => $dir_ensure,
