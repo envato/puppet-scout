@@ -1,14 +1,16 @@
 # Manages scoutapp.com agent
 class scout(
-  $ensure           = 'present',
-  $scout_key        = undef,
-  $user             = 'scout',
-  $cron_environment = undef,
-  $homedir          = '/home/scout',
-  $managehome       = true,
-  $public_cert      = undef,
+  $ensure                 = 'present',
+  $scout_key              = undef,
+  $user                   = 'scout',
+  $group                  = 'scout',
+  $groups                 = undef,
+  $cron_environment       = undef,
+  $homedir                = '/home/scout',
+  $managehome             = true,
+  $public_cert            = undef,
   $scout_environment_name = 'production',
-  $manage_ruby      = false,
+  $manage_ruby            = false,
 ) {
 
   if $ensure == 'present' {
@@ -18,16 +20,16 @@ class scout(
   }
 
   class { 'scout::user':
-    ensure => $ensure,
-    user   => $user,
-    homedir => $homedir,
-    group   => $group,
-    groups  => $groups,
+    ensure     => $ensure,
+    user       => $user,
+    homedir    => $homedir,
+    group      => $group,
+    groups     => $groups,
     managehome => $managehome,
   }
 
   if $public_cert {
-    $scout_cert_path = "${valid_home_dir}/.scout"
+    $scout_cert_path = "${homedir}/.scout"
 
     file { $scout_cert_path:
       ensure  => $dir_ensure,
@@ -59,10 +61,10 @@ class scout(
   class { 'scout::package': ensure => 'latest' }
 
   class { 'scout::cron':
-    ensure            => $ensure,
-    user              => $user,
-    scout_key         => $scout_key,
-    scout_environment => $scout_environment,
-    environment       => $cron_environment
+    ensure                 => $ensure,
+    user                   => $user,
+    scout_key              => $scout_key,
+    scout_environment_name => $scout_environment_name,
+    environment            => $cron_environment
   }
 }

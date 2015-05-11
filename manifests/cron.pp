@@ -3,13 +3,13 @@ class scout::cron (
   $user                   = scout,
   $scout_key              = undef,
   $scout_environment_name = undef,
-  $environment            = undef
+  $cron_environment       = undef
   ) {
   cron { 'scout':
     ensure      => $ensure,
-    require     => User[$user],
     user        => $user,
     command     => "/usr/bin/env scout ${scout_key} -e ${scout_environment_name}",
-    environment => $cron_environment,
+    environment => ${cron_environment},
+    require     => User[$user],
   }
 }
