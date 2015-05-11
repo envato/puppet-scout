@@ -1,4 +1,4 @@
-class scout::package (
+class scout::install (
   $ensure  => 'latest',
   ) {
   
