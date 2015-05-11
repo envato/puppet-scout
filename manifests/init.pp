@@ -1,30 +1,42 @@
 # Manages scoutapp.com agent
 class scout(
+  $ensure           = 'present',
   $scout_key        = undef,
   $user             = 'scout',
   $cron_environment = undef,
-  $home_dir         = '',
+  $homedir          = '/home/scout',
+  $managehome       = true,
   $public_cert      = undef,
   $scout_environment_name = 'production',
   $manage_ruby      = false,
 ) {
 
-  if $home_dir == '' and $user != '' {
-    $valid_home_dir="/home/${user}"
+  if $ensure == 'present' {
+    $dir_ensure = 'directory'
   } else {
-    $valid_home_dir=$home_dir
+    $dir_ensure = 'absent'
+  }
+
+  class { 'scout::user':
+    ensure => $ensure,
+    user   => $user,
+    homedir => $homedir,
+    group   => $group,
+    groups  => $groups,
+    managehome => $managehome,
   }
 
   if $public_cert {
     $scout_cert_path = "${valid_home_dir}/.scout"
 
     file { $scout_cert_path:
-      ensure  => directory,
+      ensure  => $dir_ensure,
       owner   => $user,
       require => User[$user],
     }
 
     file { "${scout_cert_path}/scout_rsa.pub":
+      ensure  => $ensure
       content => $public_cert,
       owner   => $user,
       require => [
@@ -34,7 +46,7 @@ class scout(
     }
   }
 
-  if $manage_ruby == true {
+  if $manage_ruby {
     Package['scout'] {
       require  => [
         Package['ruby'],
@@ -44,21 +56,13 @@ class scout(
     include scout::ruby
   }
 
-  package { 'scout':
-    ensure   => 'latest',
-    provider => 'gem',
-  }
+  class { 'scout::package': ensure => 'latest' }
 
-  cron { 'scout':
-    require     => User[$user],
-    user        => $user,
-    command     => "/usr/bin/env scout ${scout_key} -e ${scout_environment_name}",
-    environment => $cron_environment,
-  }
-
-  user { $user:
-    ensure     => 'present',
-    managehome => true,
-    home       => $valid_home_dir,
+  class { 'scout::cron':
+    ensure            => $ensure,
+    user              => $user,
+    scout_key         => $scout_key,
+    scout_environment => $scout_environment,
+    environment       => $cron_environment
   }
 }
