@@ -1,3 +1,4 @@
+# add scout user and groups
 class scout::user (
   $ensure    = 'present',
   $user      = 'scout',
@@ -16,7 +17,7 @@ class scout::user (
   if is_array($groups) {
     User[$user] { groups => $groups }
   } else {
-    User[$user] { groups = any2array($groups)
+    User[$user] { groups => any2array($groups) }
   }
 
   user { $user:

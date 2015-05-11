@@ -12,9 +12,9 @@ class scout::cron (
   }
 
   cron { 'scout':
-    ensure      => $ensure,
-    user        => $user,
-    command     => "/usr/bin/env scout ${scout_key} -e ${scout_environment_name}",
-    require     => User[$user],
+    ensure  => $ensure,
+    user    => $user,
+    command => "/usr/bin/env scout ${scout_key} -e ${scout_environment_name}",
+    require => User[$user],
   }
 }
