@@ -2,9 +2,9 @@ class scout::user (
   $ensure    = 'present',
   $user      = 'scout',
   $homedir   = '/home/scout',
-  group      = 'scout',
-  managehome = true,
-  groups     = undef
+  $group      = 'scout',
+  $managehome = true,
+  $groups     = undef
   ) {
 
   validate_absolute_path($homedir)

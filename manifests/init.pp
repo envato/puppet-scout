@@ -38,7 +38,7 @@ class scout(
     }
 
     file { "${scout_cert_path}/scout_rsa.pub":
-      ensure  => $ensure
+      ensure  => $ensure,
       content => $public_cert,
       owner   => $user,
       require => [

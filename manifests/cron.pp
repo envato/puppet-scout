@@ -1,3 +1,4 @@
+# installs cron
 class scout::cron (
   $ensure                 = 'present',
   $user                   = scout,
