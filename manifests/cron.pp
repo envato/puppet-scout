@@ -5,11 +5,15 @@ class scout::cron (
   $scout_environment_name = undef,
   $cron_environment       = undef
   ) {
+
+  if $cron_environment {
+    Cron['scout'] { environment => $cron_environment }
+  }
+
   cron { 'scout':
     ensure      => $ensure,
     user        => $user,
     command     => "/usr/bin/env scout ${scout_key} -e ${scout_environment_name}",
-    environment => ${cron_environment},
     require     => User[$user],
   }
 }
