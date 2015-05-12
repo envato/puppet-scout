@@ -1,5 +1,5 @@
 name    'puppet-scout'
-version '1.0.8'
+version '2.0.0'
 source 'https://github.com/envato/puppet-scout'
 author 'Envato'
 license 'MIT License (MIT)'
