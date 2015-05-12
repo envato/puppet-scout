@@ -40,3 +40,9 @@ node foo.example.com {
 It is important to note: If you do not have a corresponding environment set up
 correctly in the scout dashboard, the `scout_environment_name` will not have any
 effect.
+
+ChangeLog:
+v2.0.0:
+  * includes the any2array function from puppetlabs-stdlib in version 4.6.0
+  * moved rescourses into their own classes
+  * added the ability to include a groups for scout (and manage scout gid).
