@@ -22,7 +22,7 @@ class scout::cron (
     $roles = join($scout_roles, ',')
     $final_cmd = "${add_env_to_cmd} -r ${roles}"
   } else {
-    $final_cmd = "${add_env_to_cmd}"
+    $final_cmd = $add_env_to_cmd
   }
 
   cron { 'scout':
