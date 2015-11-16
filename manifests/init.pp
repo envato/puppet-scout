@@ -67,8 +67,8 @@ class scout(
   }
 
   class { 'scout::cron':
-    ensure                 => $ensure,
-    user                   => $user,
-    scout_key              => $scout_key,
+    ensure    => $ensure,
+    user      => $user,
+    scout_key => $scout_key,
   }
 }
