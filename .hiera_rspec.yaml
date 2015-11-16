@@ -4,5 +4,5 @@
 :yaml:
   :datadir: spec/hieradata
 :hierarchy:
+  - role/%{::special}
   - common
-
