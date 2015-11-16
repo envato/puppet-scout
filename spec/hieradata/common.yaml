@@ -1,5 +1,4 @@
 scout::install::version: latest
 scout::key: 'somekey'
 scout::cron::scout_key: blah
-scout::cron::scout_environment_name: blah
 
