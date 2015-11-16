@@ -9,11 +9,8 @@ class scout(
   $home_dir               = '/home/scout',
   $managehome             = true,
   $public_cert            = undef,
-  $scout_environment_name = 'production',
   $manage_ruby            = false,
 ) {
-
-  $scout_roles = hiera_array('scout::roles', undef)
 
   if $ensure == 'present' {
     $dir_ensure = 'directory'
@@ -62,14 +59,6 @@ class scout(
 
   class { 'scout::install': ensure => 'latest' }
 
-  if is_array($scout_roles) {
-    $roles = join($scout_roles, ','),
-    $scout_cmd_args = "-e ${scout_environment_name} -r ${roles}"
-  }
-  else {
-    $scout_cmd_args = undef
-  }
-
   file { '/var/lib/puppet':
     ensure => directory,
     owner  => 'puppet',
@@ -81,8 +70,5 @@ class scout(
     ensure                 => $ensure,
     user                   => $user,
     scout_key              => $scout_key,
-    scout_environment_name => $scout_environment_name,
-    cron_environment       => $cron_environment,
-    command_suffix         => $scout_cmd_args
   }
 }
