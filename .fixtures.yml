@@ -1,0 +1,3 @@
+fixtures:
+  symlinks:
+    scout: "#{source_dir}"

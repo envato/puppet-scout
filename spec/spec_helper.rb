@@ -1,17 +1,22 @@
 dir = File.expand_path(File.dirname(__FILE__))
 $LOAD_PATH.unshift File.join(dir, 'lib')
 
-require 'mocha'
-require 'puppet'
-require 'rspec'
-require 'spec/autorun'
+require 'puppetlabs_spec_helper/module_spec_helper'
 
-Spec::Runner.configure do |config|
-    config.mock_with :mocha
-end
+RSpec.configure do |c|
 
-# We need this because the RAL uses 'should' as a method.  This
-# allows us the same behaviour but with a different method name.
-class Object
-    alias :must :should
+  c.before :each do
+    # Ensure that we don't accidentally cache facts and environment
+    # between test cases.
+    Facter::Util::Loader.any_instance.stubs(:load_all)
+    Facter.clear
+    Facter.clear_messages
+
+    # Store any environment variables away to be restored later
+    @old_env = {}
+    ENV.each_key { |k| @old_env[k] = ENV[k] }
+
+    Puppet.settings[:strict_variables] = true if ENV['STRICT_VARIABLES'] == 'yes'
+  end
+  c.hiera_config = File.join(File.expand_path(File.dirname(__FILE__)), '..', '.hiera_rspec.yaml')
 end
