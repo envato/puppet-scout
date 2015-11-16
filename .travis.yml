@@ -7,12 +7,13 @@ rvm:
   - 1.9.3
   - 2.0.0
   - 2.1.0
+  - 2.2.0
 script: bundle exec rake test --trace
 env:
   - PUPPET_VERSION="~> 2.7.0"
-  - PUPPET_VERSION="~> 3.2.0" STRICT_VARIABLES=yes
-  - PUPPET_VERSION="~> 3.3.0" STRICT_VARIABLES=yes
-  - PUPPET_VERSION="~> 3.4.0" STRICT_VARIABLES=yes
+  - PUPPET_VERSION="~> 3.2.0"
+  - PUPPET_VERSION="~> 3.3.0"
+  - PUPPET_VERSION="~> 3.4.0"
   - PUPPET_VERSION="~> 3.5.0" STRICT_VARIABLES=yes
   - PUPPET_VERSION="~> 3.6.0" STRICT_VARIABLES=yes
 matrix:
@@ -24,8 +25,10 @@ matrix:
   - rvm: 2.1.0
     env: PUPPET_VERSION="~> 2.7.0"
   - rvm: 2.1.0
-    env: PUPPET_VERSION="~> 3.2.0" STRICT_VARIABLES=yes
+    env: PUPPET_VERSION="~> 3.2.0"
   - rvm: 2.1.0
-    env: PUPPET_VERSION="~> 3.3.0" STRICT_VARIABLES=yes
+    env: PUPPET_VERSION="~> 3.3.0"
   - rvm: 2.1.0
-    env: PUPPET_VERSION="~> 3.4.0" STRICT_VARIABLES=yes
+    env: PUPPET_VERSION="~> 3.4.0"
+  - rvm: 2.2.0
+    env: PUPPET_VERSION="~> 3.8.0" STRICT_VARIABLES=yes
