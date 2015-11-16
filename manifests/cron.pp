@@ -14,21 +14,18 @@ class scout::cron (
   }
 
   if $scout_environment_name {
-    $add_env_to_cmd = "/usr/bin/env scout ${scout_key} -e ${scout_environment_name}"
-  } else {
-    $add_env_to_cmd = "/usr/bin/env scout ${scout_key}"
+    $scout_environment_switch = " -e ${scout_environment_name}"
   }
+
   if is_array($scout_roles) {
     $roles = join($scout_roles, ',')
-    $final_cmd = "${add_env_to_cmd} -r ${roles}"
-  } else {
-    $final_cmd = $add_env_to_cmd
+    $scout_roles_switch = " -r ${roles}"
   }
 
   cron { 'scout':
     ensure  => $ensure,
     user    => $user,
-    command => $final_cmd,
+    command => "/usr/bin/env scout ${scout_key}${scout_environment_switch}${scout_roles_switch}",
     require => User[$user],
   }
 }

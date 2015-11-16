@@ -10,7 +10,7 @@ describe 'scout::cron' do
     it 'should install cron without roles or environment' do
       should contain_cron('scout').with(
         'ensure'  => 'present',
-        'command' => '/usr/bin/env scout blah',
+        'command' => '/usr/bin/env scout key',
         'user'    => 'scout'
       )
     end
@@ -21,7 +21,7 @@ describe 'scout::cron' do
     it 'should install with only environment' do
       should contain_cron('scout').with(
         'ensure'  => 'present',
-        'command' => '/usr/bin/env scout blah -e blah',
+        'command' => '/usr/bin/env scout key -e blah',
         'user'    => 'scout'
       )
     end
@@ -32,7 +32,7 @@ describe 'scout::cron' do
     it 'should install cron with roles and environment' do
       should contain_cron('scout').with(
         'ensure'  => 'present',
-        'command' => '/usr/bin/env scout blah -e blah -r arole,brole,crole',
+        'command' => '/usr/bin/env scout key -e blah -r arole,brole,crole',
         'user'    => 'scout'
       )
     end
@@ -43,7 +43,7 @@ describe 'scout::cron' do
     it 'should install cron with roles' do
       should contain_cron('scout').with(
         'ensure'  => 'present',
-        'command' => '/usr/bin/env scout blah -r arole,brole,crole',
+        'command' => '/usr/bin/env scout key -r arole,brole,crole',
         'user'    => 'scout'
       )
     end
