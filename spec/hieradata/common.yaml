@@ -1,3 +1,4 @@
 scout::install::version: latest
 scout::key: 'somekey'
+scout::cron::scout_key: key
 

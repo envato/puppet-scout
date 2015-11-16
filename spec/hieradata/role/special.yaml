@@ -1,0 +1,5 @@
+scout::cron::scout_environment_name: blah
+scout::roles:
+  - arole
+  - brole
+  - crole

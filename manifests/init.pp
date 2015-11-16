@@ -9,7 +9,6 @@ class scout(
   $home_dir               = '/home/scout',
   $managehome             = true,
   $public_cert            = undef,
-  $scout_environment_name = 'production',
   $manage_ruby            = false,
 ) {
 
@@ -60,11 +59,16 @@ class scout(
 
   class { 'scout::install': ensure => 'latest' }
 
+  file { '/var/lib/puppet':
+    ensure => directory,
+    owner  => 'puppet',
+    group  => 'puppet',
+    mode   => '0755',
+  }
+
   class { 'scout::cron':
-    ensure                 => $ensure,
-    user                   => $user,
-    scout_key              => $scout_key,
-    scout_environment_name => $scout_environment_name,
-    cron_environment       => $cron_environment
+    ensure    => $ensure,
+    user      => $user,
+    scout_key => $scout_key,
   }
 }
