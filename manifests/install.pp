@@ -3,7 +3,7 @@ class scout::install (
   $ensure  = 'latest',
   ) {
 
-  package { '^scout':
+  package { 'scout':
     ensure   => $ensure,
     provider => 'gem',
   }
