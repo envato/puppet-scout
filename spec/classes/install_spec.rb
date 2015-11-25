@@ -7,7 +7,7 @@ describe 'scout::install' do
   end
 
   it 'scout gem is installed' do
-    should contain_package('^scout').with(
+    should contain_package('scout').with(
       'ensure' => 'latest',
       'provider' => 'gem'
     )
