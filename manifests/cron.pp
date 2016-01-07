@@ -10,7 +10,11 @@ class scout::cron (
   $scout_roles = hiera_array('scout::roles', undef)
 
   if $cron_environment {
-    Cron['scout'] { environment => $cron_environment }
+    $environment = join(["SCOUT_KEY=${scout_key}", $cron_environment], ' ')
+  }
+  else
+  {
+    $environment = "SCOUT_KEY=${scout_key}"
   }
 
   if $scout_environment_name {
@@ -22,10 +26,13 @@ class scout::cron (
     $scout_roles_switch = " -r ${roles}"
   }
 
+  $command = "/usr/bin/env scout \${SCOUT_KEY}${scout_environment_switch}${scout_roles_switch}"
+
   cron { 'scout':
-    ensure  => $ensure,
-    user    => $user,
-    command => "/usr/bin/env scout ${scout_key}${scout_environment_switch}${scout_roles_switch}",
-    require => User[$user],
+    ensure      => $ensure,
+    environment => $environment,
+    user        => $user,
+    command     => $command,
+    require     => User[$user],
   }
 }
