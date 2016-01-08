@@ -58,7 +58,7 @@ describe 'scout::cron' do
     it 'adds the key to the cron environment' do
       is_expected.to contain_cron('scout').with(
         'ensure'      => 'present',
-        'environment' => 'SCOUT_KEY=key MAILTO=scout-mailbox@my.org',
+        'environment' => "SCOUT_KEY=key\nMAILTO=scout-mailbox@my.org",
         'command'     => '/usr/bin/env scout ${SCOUT_KEY}',
         'user'        => 'scout'
       )
