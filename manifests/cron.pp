@@ -10,7 +10,7 @@ class scout::cron (
   $scout_roles = hiera_array('scout::roles', undef)
 
   if $cron_environment {
-    $environment = join(["SCOUT_KEY=${scout_key}", "\n", $cron_environment])
+    $environment = join(["SCOUT_KEY=${scout_key}", $cron_environment], "\n")
   }
   else
   {
